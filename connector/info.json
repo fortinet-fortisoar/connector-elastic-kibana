@@ -1,0 +1,590 @@
+{
+    "name": "elastic-kibana",
+    "version": "1.0.0",
+    "label": "Elastic Kibana",
+    "description": "Elasic Kibana Connector.\n- API Doc: <https://www.elastic.co/docs/api/doc/kibana/>",
+    "publisher": "Fortinet CSE",
+    "icon_large_name": "connector_logo_large.png",
+    "icon_small_name": "connector_logo_small.png",
+    "category": [
+        "Analytics and SIEM"
+    ],
+    "configuration": {
+        "fields": [
+            {
+                "title": "URL",
+                "type": "text",
+                "name": "url",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "validation": {
+                    "pattern": "^https?:\\/\\/(?:(?:(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9])|(?:(?:(?:(?!25?[6-9])[12]\\d|[1-9])?\\d\\.?\\b){4})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9]))(?::\\d+)?$",
+                    "patternError": "Server URL must begin with https? and end without '/'. Port number can be added eg) <https://example.com:80>."
+                },
+                "value": "https://<kibana_host_here>:5601"
+            },
+            {
+                "title": "API Key",
+                "type": "password",
+                "name": "api_key",
+                "required": true,
+                "visible": true,
+                "editable": true
+            },
+            {
+                "title": "Verify SSL",
+                "type": "checkbox",
+                "name": "verify_ssl",
+                "required": false,
+                "visible": true,
+                "editable": true,
+                "value": true
+            }
+        ]
+    },
+    "operations": [
+        {
+            "operation": "generic_api_call",
+            "title": "Generic API call",
+            "description": "Makes API call to the given endpoint.",
+            "enabled": true,
+            "category": "",
+            "annotation": "",
+            "TEMPLATE_NOTE6": "--OUTPUT SCHEMA IS A SAMPLE RESPONSE FROM THIS CONNECTOR ACTION--",
+            "output_schema": {
+                "result": "",
+                "api_data": ""
+            },
+            "parameters": [
+                {
+                    "title": "api_endpoint",
+                    "type": "text",
+                    "name": "api_endpoint",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "Should include the whole string eg) \"/api/v1/helloworld\""
+                },
+                {
+                    "title": "method",
+                    "type": "select",
+                    "name": "method",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "GET",
+                    "options": [
+                        "GET",
+                        "PUT",
+                        "POST",
+                        "DELETE",
+                        "PATCH",
+                        "HEAD",
+                        "OPTIONS",
+                        "TRACE"
+                    ]
+                },
+                {
+                    "title": "params",
+                    "type": "object",
+                    "name": "params",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": null,
+                    "tooltip": "Same as requests library \"params\" will be converted to get in URL"
+                },
+                {
+                    "title": "data",
+                    "type": "object",
+                    "name": "data",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": null,
+                    "tooltip": "Same as requests library \"json_data\" will be converted to get in Body"
+                },
+                {
+                    "title": "headers",
+                    "type": "object",
+                    "name": "headers",
+                    "required": false,
+                    "visible": false,
+                    "editable": true,
+                    "value": null,
+                    "tooltip": "Append value in requests headers when headers is set."
+                }
+            ]
+        },
+        {
+            "operation": "get_all_data_views",
+            "title": "Get all data views",
+            "description": "Get all data views",
+            "enabled": true,
+            "output_schema": {
+                "data_view": [
+                    {
+                        "id": "ff959d40-b880-11e8-a6d9-e546fe2bba5f",
+                        "name": "Kibana Sample Data eCommerce",
+                        "title": "kibana_sample_data_ecommerce",
+                        "typeMeta": {},
+                        "namespaces": [
+                            "default"
+                        ]
+                    },
+                    {
+                        "id": "d3d7af60-4c81-11e8-b3d7-01146121b73d",
+                        "name": "Kibana Sample Data Flights",
+                        "title": "kibana_sample_data_flights",
+                        "namespaces": [
+                            "default"
+                        ]
+                    },
+                    {
+                        "id": "90943e30-9a47-11e8-b64d-95841ca0b247",
+                        "name": "Kibana Sample Data Logs",
+                        "title": "kibana_sample_data_logs",
+                        "namespaces": [
+                            "default"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "operation": "get_saved_queries",
+            "title": "Get saved queries",
+            "description": "Get saved queries.\n- API Doc: <https://www.elastic.co/docs/api/doc/kibana/operation/operation-osqueryfindsavedqueries>",
+            "enabled": true
+        },
+        {
+            "operation": "create_a_live_query",
+            "title": "Create a live query",
+            "description": "Create a live query.\n- API Doc: <https://www.elastic.co/docs/api/doc/kibana/operation/operation-osquerycreatelivequery>",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "agent_ids",
+                    "type": "json",
+                    "name": "agent_ids",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "[]",
+                    "tooltip": "[\"agent_id_1\", \"agent_id_2\", ...]"
+                },
+                {
+                    "title": "agent_platforms",
+                    "type": "json",
+                    "name": "agent_platforms",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "[]",
+                    "tooltip": "[\"platform_id_1\", \"platform_id_2\", ...]"
+                },
+                {
+                    "title": "agent_policy_ids",
+                    "type": "json",
+                    "name": "agent_policy_ids",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "[]",
+                    "tooltip": "[\"policy_id_1\", \"policy_id_2\", ...]"
+                },
+                {
+                    "title": "alert_ids",
+                    "type": "json",
+                    "name": "alert_ids",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "[]",
+                    "tooltip": "[\"alert_id_1\", \"alert_id_2\", ...]"
+                },
+                {
+                    "title": "case_ids",
+                    "type": "json",
+                    "name": "case_ids",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "[]",
+                    "tooltip": "[\"case_id_1\", \"case_id_2\", ...]"
+                },
+                {
+                    "title": "ecs_mapping",
+                    "type": "json",
+                    "name": "ecs_mapping",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "[]",
+                    "tooltip": "Map osquery results columns or static values to Elastic Common Schema (ECS) fields.\nCheck: <https://www.elastic.co/docs/api/doc/kibana/operation/operation-osquerycreatelivequery#operation-osquerycreatelivequery-body-application-json-ecs_mapping>"
+                },
+                {
+                    "title": "event_ids",
+                    "type": "json",
+                    "name": "event_ids",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "[]",
+                    "tooltip": "[\"event_id_1\", \"event_id_2\", ...]"
+                },
+                {
+                    "title": "metadata",
+                    "type": "json",
+                    "name": "metadata",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "[]",
+                    "tooltip": "Custom metadata object associated with the live query."
+                },
+                {
+                    "title": "pack_id",
+                    "type": "text",
+                    "name": "pack_id",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the pack you want to run, retrieve, update, or delete."
+                },
+                {
+                    "title": "query",
+                    "type": "textarea",
+                    "name": "query",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The SQL query you want to run. ex) 'select * from uptime;'"
+                }
+            ]
+        },
+        {
+            "operation": "get_live_query_results",
+            "title": "Get live query results",
+            "description": "Get live query results.\n- API Doc: <https://www.elastic.co/docs/api/doc/kibana/operation/operation-osquerygetlivequeryresults>",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "id",
+                    "type": "text",
+                    "name": "id",
+                    "required": true,
+                    "visible": true,
+                    "editable": true
+                },
+                {
+                    "title": "actionId",
+                    "type": "text",
+                    "name": "actionId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true
+                }
+            ]
+        },
+        {
+            "operation": "search_cases",
+            "title": "Search cases",
+            "description": "Search cases.\n- API Doc: <https://www.elastic.co/docs/api/doc/kibana/operation/operation-findcasesdefaultspace>",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "assignees",
+                    "type": "text",
+                    "name": "assignees",
+                    "required": false,
+                    "visible": true,
+                    "editable": true
+                },
+                {
+                    "title": "category",
+                    "type": "text",
+                    "name": "category",
+                    "required": false,
+                    "visible": true,
+                    "editable": true
+                },
+                {
+                    "title": "defaultSearchOperator",
+                    "type": "text",
+                    "name": "defaultSearchOperator",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "The default operator to use for the simple_query_string.",
+                    "value": "OR"
+                },
+                {
+                    "title": "from",
+                    "type": "text",
+                    "name": "from_",
+                    "required": false,
+                    "visible": true,
+                    "editable": true
+                },
+                {
+                    "title": "owner",
+                    "type": "text",
+                    "name": "owner",
+                    "required": false,
+                    "visible": true,
+                    "editable": true
+                },
+                {
+                    "title": "page",
+                    "type": "integer",
+                    "name": "page",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": 1
+                },
+                {
+                    "title": "perPage",
+                    "type": "integer",
+                    "name": "perPage",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": 20
+                },
+                {
+                    "title": "reporters",
+                    "type": "text",
+                    "name": "reporters",
+                    "required": false,
+                    "visible": true,
+                    "editable": true
+                },
+                {
+                    "title": "search",
+                    "type": "text",
+                    "name": "search",
+                    "required": true,
+                    "visible": true,
+                    "editable": true
+                },
+                {
+                    "title": "searchFields",
+                    "type": "text",
+                    "name": "searchFields",
+                    "required": false,
+                    "visible": true,
+                    "editable": true
+                },
+                {
+                    "title": "sortField",
+                    "type": "text",
+                    "name": "sortField",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "createdAt"
+                },
+                {
+                    "title": "sortOrder",
+                    "type": "text",
+                    "name": "sortOrder",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "desc"
+                },
+                {
+                    "title": "status",
+                    "type": "text",
+                    "name": "status",
+                    "required": false,
+                    "visible": true,
+                    "editable": true
+                },
+                {
+                    "title": "tags",
+                    "type": "text",
+                    "name": "tags",
+                    "required": false,
+                    "visible": true,
+                    "editable": true
+                },
+                {
+                    "title": "to",
+                    "type": "text",
+                    "name": "to",
+                    "required": false,
+                    "visible": true,
+                    "editable": true
+                }
+            ],
+            "output_schema": {
+                "page": 1,
+                "cases": [
+                    {
+                        "id": "abed3a70-71bd-11ea-a0b2-c51ea50a58e2",
+                        "tags": [
+                            "tag-1"
+                        ],
+                        "owner": "cases",
+                        "title": "Case title",
+                        "status": "open",
+                        "version": "WzExMCwxXQ==",
+                        "category": null,
+                        "comments": [],
+                        "duration": null,
+                        "settings": {
+                            "syncAlerts": true
+                        },
+                        "severity": "low",
+                        "assignees": [],
+                        "closed_at": null,
+                        "closed_by": null,
+                        "connector": {
+                            "id": "none",
+                            "name": "none",
+                            "type": ".none",
+                            "fields": null
+                        },
+                        "created_at": "2023-10-12T00:16:36.371Z",
+                        "created_by": {
+                            "email": null,
+                            "username": "elastic",
+                            "full_name": null,
+                            "profile_uid": "u_mGBROF_q5bmFCATbLXAcCwKa0k8JvONAwSruelyKA5E_0"
+                        },
+                        "updated_at": "2023-10-12T00:27:58.162Z",
+                        "updated_by": {
+                            "email": null,
+                            "username": "elastic",
+                            "full_name": null,
+                            "profile_uid": "u_mGBROF_q5bmFCATbLXAcCwKa0k8JvONAwSruelyKA5E_0"
+                        },
+                        "description": "Case description",
+                        "totalAlerts": 0,
+                        "customFields": [
+                            {
+                                "key": "d312efda-ec2b-42ec-9e2c-84981795c581",
+                                "type": "text",
+                                "value": "My field value"
+                            },
+                            {
+                                "key": "fcc6840d-eb14-42df-8aaf-232201a705ec",
+                                "type": "toggle",
+                                "value": null
+                            }
+                        ],
+                        "totalComment": 1,
+                        "external_service": null
+                    }
+                ],
+                "total": 1,
+                "per_page": 5,
+                "count_open_cases": 1,
+                "count_closed_cases": 0,
+                "count_in_progress_cases": 0
+            }
+        },
+        {
+            "operation": "get_case_information",
+            "title": "Get case information",
+            "description": "Get case information.\n- API Doc: <https://www.elastic.co/docs/api/doc/kibana/operation/operation-getcasedefaultspace>",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "caseId",
+                    "type": "text",
+                    "name": "caseId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true
+                }
+            ]
+        },
+        {
+            "operation": "add_and_remove_detection_alert_tags",
+            "title": "Add and remove detection alert tags",
+            "description": "Add and remove detection alert tags.\n- API Doc: <https://www.elastic.co/docs/api/doc/kibana/operation/operation-setalerttags>",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "ids",
+                    "type": "json",
+                    "name": "ids",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "[\"id_1\", \"id_2\", ...]",
+                    "value": "[]"
+                },
+                {
+                    "title": "tags",
+                    "type": "json",
+                    "name": "tags",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "{\"tags_to_add\": [\"Duplicated\"], \"tags_to_remove\": []}",
+                    "value": "{\"tags_to_add\": [], \"tags_to_remove\": []}"
+                }
+            ]
+        },
+        {
+            "title": "(Deprecation Warning) Generic Action",
+            "operation": "generic_action",
+            "description": "This action will be deprecated at version 1.0.1.\nPlease use the action 'Generic API call'",
+            "parameters": [
+                {
+                    "title": "method",
+                    "type": "select",
+                    "name": "method",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "GET",
+                    "options": [
+                        "GET",
+                        "POST",
+                        "PATCH",
+                        "DELETE",
+                        "PUT"
+                    ]
+                },
+                {
+                    "title": "api_endpoint",
+                    "type": "text",
+                    "name": "apiendpoint",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "/view/something"
+                },
+                {
+                    "title": "data",
+                    "type": "object",
+                    "name": "data",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": null
+                },
+                {
+                    "title": "params",
+                    "type": "object",
+                    "name": "params",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": null
+                }
+            ]
+        }
+    ]
+}
