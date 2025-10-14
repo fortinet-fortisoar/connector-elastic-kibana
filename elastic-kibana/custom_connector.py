@@ -1,5 +1,13 @@
+"""
+Copyright start
+MIT License
+Copyright (c) 2025 Fortinet Inc
+Copyright end
+"""
+
 import requests
 from typing import Literal, Optional, Union, Any
+from .constants import *
 
 
 class CustomConnector:
@@ -25,18 +33,20 @@ class CustomConnector:
             return None
         elif isinstance(_d, list):
             return _d
+        elif isinstance(_d, str):
+            return None
         return {k: v for k, v in _d.items() if v is not None}
 
     def _check_health(self):
         return self.health_check()
 
     def generic_api_call(
-        self,
-        method: Literal["GET", "PUT", "POST", "DELETE", "PATCH", "HEAD", "OPTIONS", "TRACE"],
-        api_endpoint: str,
-        headers: Optional[dict] = None,
-        params: Optional[dict] = None,
-        json_data: Optional[dict] = None,
+            self,
+            method: Literal["GET", "PUT", "POST", "DELETE", "PATCH", "HEAD", "OPTIONS", "TRACE"],
+            api_endpoint: str,
+            headers: Optional[dict] = None,
+            params: Optional[dict] = None,
+            json_data: Optional[dict] = None,
     ) -> dict:
         self._check_api_endpoint(api_endpoint)
         url = self.url + api_endpoint
@@ -50,7 +60,8 @@ class CustomConnector:
         params_new = self._delete_none_dict(params)
         json_data_new = self._delete_none_dict(json_data)
 
-        resp = requests.request(method, url, headers=headers, params=params_new, json=json_data_new, verify=self.verify_ssl)
+        resp = requests.request(method, url, headers=headers, params=params_new, json=json_data_new,
+                                verify=self.verify_ssl)
         return resp.json()
 
     def health_check(self) -> dict:
@@ -70,17 +81,17 @@ class CustomConnector:
         return self.generic_api_call("GET", endpoint)
 
     def create_a_live_query(
-        self,
-        agent_ids: Optional[list[str]] = None,
-        agent_platforms: Optional[list[str]] = None,
-        agent_policy_ids: Optional[list[str]] = None,
-        alert_ids: Optional[list[str]] = None,
-        case_ids: Optional[list[str]] = None,
-        ecs_mapping: Optional[dict] = None,
-        event_ids: Optional[list[str]] = None,
-        metadata: Optional[dict] = None,
-        pack_id: Optional[str] = None,
-        query: Optional[dict] = None,
+            self,
+            agent_ids: Optional[list[str]] = None,
+            agent_platforms: Optional[list[str]] = None,
+            agent_policy_ids: Optional[list[str]] = None,
+            alert_ids: Optional[list[str]] = None,
+            case_ids: Optional[list[str]] = None,
+            ecs_mapping: Optional[dict] = None,
+            event_ids: Optional[list[str]] = None,
+            metadata: Optional[dict] = None,
+            pack_id: Optional[str] = None,
+            query: Optional[dict] = None,
     ) -> dict:
         """Create a live query
         - API Doc: https://www.elastic.co/docs/api/doc/kibana/operation/operation-osquerycreatelivequery
@@ -98,6 +109,7 @@ class CustomConnector:
             "pack_id": pack_id,
             "query": query,
         }
+        json_data = {k: v for k, v in json_data.items() if v is not None and v != ''}
         return self.generic_api_call("POST", endpoint, json_data=json_data)
 
     def get_live_query_results(self, id: str, actionId: str) -> dict:
@@ -108,23 +120,23 @@ class CustomConnector:
         return self.generic_api_call("GET", endpoint)
 
     def search_cases(
-        self,
-        assignees: Optional[Union[str, list[str]]] = None,
-        category: Optional[Union[str, list[str]]] = None,
-        defaultSearchOperator: str = "OR",
-        from_: Optional[str] = None,
-        owner: Optional[Union[str, list[str]]] = None,
-        page: int = 1,
-        perPage: int = 20,
-        reporters: Optional[Union[str, list[str]]] = None,
-        search: Optional[str] = None,
-        searchFields: Optional[Union[str, list[str]]] = None,
-        severity: Optional[str] = None,
-        sortField: str = "createdAt",
-        sortOrder: str = "desc",
-        status: Optional[str] = None,
-        tags: Optional[Union[str, list[str]]] = None,
-        to: Optional[str] = None,
+            self,
+            assignees: Optional[Union[str, list[str]]] = None,
+            category: Optional[Union[str, list[str]]] = None,
+            defaultSearchOperator: str = "OR",
+            from_: Optional[str] = None,
+            owner: Optional[Union[str, list[str]]] = None,
+            page: int = 1,
+            perPage: int = 20,
+            reporters: Optional[Union[str, list[str]]] = None,
+            search: Optional[str] = None,
+            searchFields: Optional[Union[str, list[str]]] = None,
+            severity: Optional[str] = None,
+            sortField: str = "createdAt",
+            sortOrder: str = "desc",
+            status: Optional[str] = None,
+            tags: Optional[Union[str, list[str]]] = None,
+            to: Optional[str] = None,
     ) -> dict:
         """Search cases
         - API Doc: <https://www.elastic.co/docs/api/doc/kibana/operation/operation-findcasesdefaultspace>"""
@@ -134,19 +146,20 @@ class CustomConnector:
             "category": category,
             "defaultSearchOperator": defaultSearchOperator,
             "from": from_,
-            "owner": owner,
+            "owner": OWNER.get(owner) if owner else '',
             "page": page,
             "perPage": perPage,
             "reporters": reporters,
             "search": search,
-            "searchFields": searchFields,
-            "severity": severity,
-            "sortField": sortField,
-            "sortOrder": sortOrder,
-            "status": status,
+            "searchFields": searchFields.lower() if searchFields else '',
+            "severity": severity.lower() if severity else '',
+            "sortField": SORT_FIELD.get(sortField) if sortField else '',
+            "sortOrder": SORT_ORDER.get(sortOrder) if sortOrder else '',
+            "status": STATUS.get(status) if status else '',
             "tags": tags,
             "to": to,
         }
+        params = {k: v for k, v in params.items() if v is not None and v != ''}
         return self.generic_api_call("POST", endpoint, params=params)
 
     def get_case_information(self, caseId: str) -> dict:
@@ -167,10 +180,10 @@ class CustomConnector:
     # ---------------- Below Codes will be deprecaed after version 1.0.1 ------------------
     # TODO Below function will be deprecated at version 1.0.1
     def generic_action(
-        self,
-        method: Literal["GET", "PUT", "POST", "DELETE", "PATCH", "HEAD", "OPTIONS", "TRACE"],
-        apiendpoint: str,
-        params: dict,
-        data: dict,
+            self,
+            method: Literal["GET", "PUT", "POST", "DELETE", "PATCH", "HEAD", "OPTIONS", "TRACE"],
+            apiendpoint: str,
+            params: dict,
+            data: dict,
     ) -> dict:
         return self.generic_api_call(method, apiendpoint, params=params, json_data=data)

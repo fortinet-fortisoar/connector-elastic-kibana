@@ -1,9 +1,16 @@
+"""
+Copyright start
+MIT License
+Copyright (c) 2025 Fortinet Inc
+Copyright end
+"""
+
+import json
 from connectors.core.connector import Connector
 from connectors.core.connector import get_logger, ConnectorError
-import json
 from .custom_connector import CustomConnector
 
-logger = get_logger("sample-connector")
+logger = get_logger("elastic-kibana")
 
 
 class BaseConnector(Connector):

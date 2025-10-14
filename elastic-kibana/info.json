@@ -1,0 +1,774 @@
+{
+  "name": "elastic-kibana",
+  "version": "1.0.0",
+  "label": "Elastic Kibana",
+  "description": "Elastic Kibana provides a powerful UI for interacting with the Elastic Stack. It enables users to search, visualize, and manage data from Elasticsearch, build dashboards, monitor systems, and secure their environment.",
+  "publisher": "Fortinet CSE",
+  "cs_approved": false,
+  "cs_compatible": true,
+  "contributor": "Daehyeob Kim",
+  "help_online": "https://github.com/fortinet-fortisoar/connector-elastic-kibana/blob/release/1.0.0/docs/readme.md",
+  "icon_large_name": "large.png",
+  "icon_small_name": "small.png",
+  "category": [
+    "Analytics and SIEM"
+  ],
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "description": "Specify the URL of the Elastic server to connect and perform automated operations.",
+        "type": "text",
+        "name": "url",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "tooltip": "Specify the URL of the Elastic server to connect and perform automated operations.",
+        "value": "https://<kibana_host_here>:<port>"
+      },
+      {
+        "title": "API Key",
+        "description": "Specify the API Key to connect to the endpoint and perform automated operations",
+        "type": "password",
+        "name": "api_key",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "tooltip": "Specify the API Key to connect to the endpoint and perform automated operations"
+      },
+      {
+        "title": "Verify SSL",
+        "description": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is selected, i.e., set to true.",
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "required": false,
+        "visible": true,
+        "editable": true,
+        "value": true,
+        "tooltip": "Specifies whether the SSL certificate for the server is to be verified. By default, this option is selected, i.e., set to true."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_all_data_views",
+      "title": "Get All Data Views",
+      "description": "Retrieve a list of all data views from Elastic Kibana.",
+      "category": "investigation",
+      "annotation": "get_all_data_views",
+      "enabled": true,
+      "parameters": [],
+      "output_schema": {
+        "data_view": [
+          {
+            "id": "",
+            "name": "",
+            "title": "",
+            "typeMeta": {},
+            "namespaces": [
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "operation": "get_saved_queries",
+      "title": "Get Saved Queries",
+      "description": "Retrieve a list of all saved queries from Elastic Kibana.",
+      "category": "investigation",
+      "annotation": "get_saved_queries",
+      "enabled": true,
+      "parameters": [],
+      "output_schema": {}
+    },
+    {
+      "operation": "create_a_live_query",
+      "title": "Create Live Query",
+      "description": "Create and run a live query in Elastic Kibana based on the input parameters that ypu have specified.",
+      "category": "investigation",
+      "annotation": "create_a_live_query",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Query",
+          "description": "Specify the SQL query to execute in Elastic Kibana. For e.g select * from uptime;",
+          "type": "textarea",
+          "name": "query",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the SQL query to execute in Elastic Kibana. For e.g select * from uptime;"
+        },
+        {
+          "title": "Agent IDs",
+          "description": "Specify a comma-separated list of agent IDs to create and execute a live query in Elastic Kibana.",
+          "type": "json",
+          "name": "agent_ids",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": [
+            "agent_id_1",
+            "agent_id_2"
+          ],
+          "tooltip": "Specify a comma-separated list of agent IDs to create and execute a live query in Elastic Kibana."
+        },
+        {
+          "title": "Agent Platforms",
+          "description": "Specify a comma-separated list of platforms IDs to create and execute a live query in Elastic Kibana.",
+          "type": "json",
+          "name": "agent_platforms",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": [
+            "platform_id_1",
+            "platform_id_2"
+          ],
+          "tooltip": "Specify a comma-separated list of platforms IDs to create and execute a live query in Elastic Kibana."
+        },
+        {
+          "title": "Agent Policy IDs",
+          "description": "Specify a comma-separated list of policy IDs to create and execute a live query in Elastic Kibana.",
+          "type": "json",
+          "name": "agent_policy_ids",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify a comma-separated list of policy IDs to create and execute a live query in Elastic Kibana. For e.g [\"policy_id_1\", \"policy_id_2\", ...]"
+        },
+        {
+          "title": "Alert IDs",
+          "description": "Specify a comma-separated list of alert IDs to create and execute a live query in Elastic Kibana.",
+          "type": "json",
+          "name": "alert_ids",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify a comma-separated list of alert IDs to create and execute a live query in Elastic Kibana. For e.g [\"alert_id_1\", \"alert_id_2\", ...]"
+        },
+        {
+          "title": "Case IDs",
+          "description": "Specify a comma-separated list of alert IDs to create and execute a live query in Elastic Kibana.",
+          "type": "json",
+          "name": "case_ids",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify a comma-separated list of alert IDs to create and execute a live query in Elastic Kibana. For e.g [\"case_id_1\", \"case_id_2\", ...]"
+        },
+        {
+          "title": "ECS Mapping",
+          "description": "Map osquery results columns or static values to Elastic Common Schema (ECS) fields.",
+          "type": "json",
+          "name": "ecs_mapping",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Map osquery results columns or static values to Elastic Common Schema (ECS) fields. For e.g {\"host.uptime\":{\"field\":\"total_seconds\"}}}"
+        },
+        {
+          "title": "Event IDs",
+          "description": "Specify a comma-separated list of event IDs to create and execute a live query in Elastic Kibana.",
+          "type": "json",
+          "name": "event_ids",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify a comma-separated list of event IDs to create and execute a live query in Elastic Kibana. For e.g [\"event_id_1\", \"event_id_2\", ...]"
+        },
+        {
+          "title": "Metadata",
+          "description": "Specify the custom metadata object associated with the live query.",
+          "type": "json",
+          "name": "metadata",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the custom metadata object associated with the live query."
+        },
+        {
+          "title": "Pack ID",
+          "description": "Specify the ID of the pack you want to run in Elastic Kibana.",
+          "type": "text",
+          "name": "pack_id",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the ID of the pack you want to run in Elastic Kibana."
+        }
+      ],
+      "output_schema": {}
+    },
+    {
+      "operation": "get_live_query_results",
+      "title": "Get Live Query Results",
+      "description": "Retrieve the results of a live query using the query action ID from Elastic Kibana.",
+      "category": "investigation",
+      "annotation": "get_live_query_results",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Query ID",
+          "description": "Specify the ID of the live query result you want to retrieve.",
+          "type": "text",
+          "name": "id",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the ID of the live query result you want to retrieve."
+        },
+        {
+          "title": "Query Action ID",
+          "description": "Specify the ID of the query action that generated the live query results.",
+          "type": "text",
+          "name": "actionId",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the ID of the query action that generated the live query results."
+        }
+      ],
+      "output_schema": {}
+    },
+    {
+      "operation": "search_cases",
+      "title": "Search cases",
+      "description": "Search cases in Elastic Kibana server based on the input parameters that you have specified.",
+      "category": "investigation",
+      "annotation": "search_cases",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Assignees",
+          "description": "Filters the returned cases by assignees. Valid values are None or unique identifiers for the user profiles.",
+          "type": "text",
+          "name": "assignees",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Filters the returned cases by assignees. Valid values are None or unique identifiers for the user profiles."
+        },
+        {
+          "title": "Category",
+          "description": "Filters the returned cases by category.",
+          "type": "text",
+          "name": "category",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Filters the returned cases by category."
+        },
+        {
+          "title": "Default Search Operator",
+          "description": "Specify the default operator to use for the simple query string. By default, it set as \"OR\"",
+          "type": "text",
+          "name": "defaultSearchOperator",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the default operator to use for the simple query string. By default, it set as \"OR\"",
+          "value": "OR"
+        },
+        {
+          "title": "From DateTime",
+          "description": "Specify the from datetime to retrieve only cases that were created after a specific date. The date must be specified as a KQL data range or date match expression.",
+          "type": "text",
+          "name": "from_",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the from datetime to retrieve only cases that were created after a specific date. The date must be specified as a KQL data range or date match expression."
+        },
+        {
+          "title": "To DateTime",
+          "description": "Specify the to datetime, to only cases that were created before a specific date. The date must be specified as a KQL data range or date match expression.",
+          "type": "text",
+          "name": "to",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the to datetime, to only cases that were created before a specific date. The date must be specified as a KQL data range or date match expression."
+        },
+        {
+          "title": "Owner",
+          "description": "A filter to limit the response to a specific set of applications. If this parameter is omitted, the response contains information about all the cases that the user has access to read. You can choose from the following options: Cases, Observability, or Security Solution",
+          "type": "select",
+          "name": "owner",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "A filter to limit the response to a specific set of applications. If this parameter is omitted, the response contains information about all the cases that the user has access to read. You can choose from the following options: Cases, Observability, or Security Solution",
+          "options": [
+            "Cases",
+            "Observability",
+            "Security Solution"
+          ]
+        },
+        {
+          "title": "Reporters",
+          "description": "Filters the returned cases by the user name of the reporter.",
+          "type": "text",
+          "name": "reporters",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Filters the returned cases by the user name of the reporter."
+        },
+        {
+          "title": "Search Query",
+          "description": "An Elasticsearch simple query string query that filters the objects in the response.",
+          "type": "text",
+          "name": "search",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "An Elasticsearch simple query string query that filters the objects in the response."
+        },
+        {
+          "title": "Search Fields",
+          "description": "Select the fields to perform the simple_query_string parsed query against. You can choose either Title or Description",
+          "type": "select",
+          "name": "searchFields",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Select the fields to perform the simple_query_string parsed query against. You can choose either Title or Description",
+          "options": [
+            "Title",
+            "Description"
+          ]
+        },
+        {
+          "title": "Severity",
+          "description": "Select the severity by which to filters the returned cases. You can choose from the following options: Low, Medium, high, or Critical.",
+          "type": "select",
+          "name": "severity",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Select the severity by which to filters the returned cases. You can choose from the following options: Low, Medium, high, or Critical.",
+          "options": [
+            "Low",
+            "Medium",
+            "High",
+            "Critical"
+          ]
+        },
+        {
+          "title": "Status",
+          "description": "Select the status by which to filters the returned cases by state. You can choose from the following options: Open, In Progress, or Closed",
+          "type": "select",
+          "name": "status",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Select the status by which to filters the returned cases by state. You can choose from the following options: Open, In Progress, or Closed",
+          "options": [
+            "Open",
+            "In Progress",
+            "Closed"
+          ]
+        },
+        {
+          "title": "Tags",
+          "description": "Filters the returned cases by tags.",
+          "type": "text",
+          "name": "tags",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Filters the returned cases by tags."
+        },
+        {
+          "title": "Sort Field",
+          "description": "Select the fields by which to sort the cases retrieved. You can choose from the following options: CreatedAt, UpdatedAt, ClosedAt, Title, category, Status, or Severity. By default, this option is set to \"CreatedAt\".",
+          "type": "select",
+          "name": "sortField",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "CreatedAt",
+          "tooltip": "Select the fields by which to sort the cases retrieved. You can choose from the following options: CreatedAt, UpdatedAt, ClosedAt, Title, category, Status, or Severity. By default, this option is set to \"CreatedAt\".",
+          "options": [
+            "CreatedAt",
+            "UpdatedAt",
+            "ClosedAt",
+            "Title",
+            "Category",
+            "Status",
+            "Severity"
+          ]
+        },
+        {
+          "title": "Sort Order",
+          "description": "Select the sort order for the retrieved cases. You can choose from the following options: Ascending or Descending. By default, this option is set to \"Descending\".",
+          "type": "select",
+          "name": "sortOrder",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "value": "Descending",
+          "tooltip": "Select the sort order for the retrieved cases. You can choose from the following options: Ascending or Descending. By default, this option is set to \"Descending\".",
+          "options": [
+            "Ascending",
+            "Descending"
+          ]
+        },
+        {
+          "title": "Page Number",
+          "description": "Specify the page number from which to retrieve cases when pagination is applied. This parameter is used to fetch a specific subset of results based on the page number, helping to break large datasets into manageable chunks. By default, this value is set to 1.",
+          "type": "integer",
+          "name": "page",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the page number from which to retrieve cases when pagination is applied. This parameter is used to fetch a specific subset of results based on the page number, helping to break large datasets into manageable chunks. By default, this value is set to 1.",
+          "value": 1
+        },
+        {
+          "title": "Page Size",
+          "description": "Specify the maximum number of results this operation should return, per page, in the response. By default, this value is set to 20 and maximum value is 100.",
+          "type": "integer",
+          "name": "perPage",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the maximum number of results this operation should return, per page, in the response. By default, this value is set to 20 and maximum value is 100.",
+          "value": 20
+        }
+      ],
+      "output_schema": {
+        "page": "",
+        "cases": [
+          {
+            "id": "",
+            "tags": [
+              ""
+            ],
+            "owner": "",
+            "title": "",
+            "status": "",
+            "version": "",
+            "category": "",
+            "comments": [],
+            "duration": "",
+            "settings": {
+              "syncAlerts": ""
+            },
+            "severity": "",
+            "assignees": [],
+            "closed_at": "",
+            "closed_by": "",
+            "connector": {
+              "id": "",
+              "name": "",
+              "type": "",
+              "fields": ""
+            },
+            "created_at": "",
+            "created_by": {
+              "email": "",
+              "username": "",
+              "full_name": "",
+              "profile_uid": ""
+            },
+            "updated_at": "",
+            "updated_by": {
+              "email": "",
+              "username": "",
+              "full_name": "",
+              "profile_uid": ""
+            },
+            "description": "",
+            "totalAlerts": "",
+            "customFields": [
+              {
+                "key": "",
+                "type": "",
+                "value": ""
+              },
+              {
+                "key": "",
+                "type": "",
+                "value": ""
+              }
+            ],
+            "totalComment": "",
+            "external_service": ""
+          }
+        ],
+        "total": "",
+        "per_page": "",
+        "count_open_cases": "",
+        "count_closed_cases": "",
+        "count_in_progress_cases": ""
+      }
+    },
+    {
+      "title": "Get Case Information",
+      "operation": "get_case_information",
+      "description": "Retrieve a specific case information from Elastic Kibana based on the case ID you have specified.",
+      "category": "investigation",
+      "annotation": "get_case_information",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Case ID",
+          "description": "Specify the ID of the case based on which you want to retrieve details.",
+          "type": "text",
+          "name": "caseId",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the ID of the case based on which you want to retrieve details."
+        }
+      ],
+      "output_schema": {
+        "id": "",
+        "tags": [
+          ""
+        ],
+        "owner": "",
+        "title": "",
+        "status": "",
+        "version": "",
+        "category": "",
+        "comments": [
+          {
+            "id": "",
+            "type": "",
+            "owner": "",
+            "comment": "",
+            "version": "",
+            "pushed_at": "",
+            "pushed_by": "",
+            "created_at": "",
+            "created_by": {
+              "email": "",
+              "username": "",
+              "full_name": "",
+              "profile_uid": ""
+            },
+            "updated_at": "",
+            "updated_by": ""
+          }
+        ],
+        "duration": "",
+        "settings": {
+          "syncAlerts": ""
+        },
+        "severity": "",
+        "assignees": [
+          {
+            "uid": ""
+          }
+        ],
+        "closed_at": "",
+        "closed_by": "",
+        "connector": {
+          "id": "",
+          "name": "",
+          "type": "",
+          "fields": ""
+        },
+        "created_at": "",
+        "created_by": {
+          "email": "",
+          "username": "",
+          "full_name": "",
+          "profile_uid": ""
+        },
+        "updated_at": "",
+        "updated_by": {
+          "email": "",
+          "username": "",
+          "full_name": "",
+          "profile_uid": ""
+        },
+        "description": "",
+        "totalAlerts": "",
+        "customFields": [
+          {
+            "key": "",
+            "type": "",
+            "value": ""
+          }
+        ],
+        "totalComment": "",
+        "external_service": ""
+      }
+    },
+    {
+      "operation": "add_and_remove_detection_alert_tags",
+      "title": "Add and Remove Detection Alert Tags",
+      "description": "Add and remove detection alert tags based on the alert IDs and tags which you have specified.",
+      "category": "investigation",
+      "annotation": "add_and_remove_detection_alert_tags",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Alert IDs",
+          "description": "Specify a comma-separated list of alert IDs to add and remove detection alert tags in Elastic Kibana.",
+          "type": "json",
+          "name": "ids",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify a comma-separated list of alert IDs to add and remove detection alert tags in Elastic Kibana. For e.g [\"id_1\", \"id_2\", ...]"
+        },
+        {
+          "title": "Tags",
+          "description": "Specify a comma-separated list of alert tags to add and remove from alerts in Elastic Kibana.",
+          "type": "json",
+          "name": "tags",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify a comma-separated list of alert tags to add and remove from alerts in Elastic Kibana. For e.g {\"tags_to_add\": [\"Duplicated\"], \"tags_to_remove\": []}",
+          "value": {
+            "tags_to_add": [],
+            "tags_to_remove": []
+          }
+        }
+      ],
+      "output_schema": {
+        "took": "",
+        "noops": "",
+        "total": "",
+        "batches": "",
+        "deleted": "",
+        "retries": {
+          "bulk": "",
+          "search": ""
+        },
+        "updated": "",
+        "failures": [],
+        "timed_out": "",
+        "throttled_millis": "",
+        "version_conflicts": "",
+        "requests_per_second": "",
+        "throttled_until_millis": ""
+      }
+    },
+    {
+      "operation": "generic_api_call",
+      "title": "Execute an API Request",
+      "description": "Sends an API request to an API endpoint based on specified HTTP method, endpoint, and other input parameters that you have specified, enabling flexible API interactions tailored to user needs.",
+      "category": "investigation",
+      "annotation": "generic_api_call",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "HTTP Method",
+          "description": "Select an HTTP action for the request. You can select from the following options: \n\nGET \n\nPUT \n\nPOST \n\nDELETE \n\nPATCH \n\nHEAD \n\nOPTIONS \n\nTRACE",
+          "type": "select",
+          "name": "method",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": "GET",
+          "options": [
+            "GET",
+            "PUT",
+            "POST",
+            "DELETE",
+            "PATCH",
+            "HEAD",
+            "OPTIONS",
+            "TRACE"
+          ]
+        },
+        {
+          "title": "Endpoint",
+          "description": "Specify the target API URL path for the request. For example, if the website is https://example.com and URL path is https://example.com/images/pic.jpg, the endpoint would be /images/pic.jpg.",
+          "type": "text",
+          "name": "api_endpoint",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the target API URL path for example: /api/data_views"
+        },
+        {
+          "title": "Query Parameters",
+          "description": "Specify any optional parameters to add to the URL and refine the request.",
+          "type": "object",
+          "name": "params",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify any optional parameters to add to the URL and refine the request."
+        },
+        {
+          "title": "Request Payload",
+          "description": "Specify data, as JSON, to be sent as the request payload (typically for POST or PUT requests).",
+          "type": "object",
+          "name": "json_data",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify data, as JSON, to be sent as the request payload (typically for POST or PUT requests)."
+        }
+      ],
+      "output_schema": {}
+    },
+    {
+      "title": "(Deprecation Warning) Generic Action",
+      "operation": "generic_action",
+      "description": "Sends an API request to an API endpoint based on specified HTTP method, endpoint, and other input parameters that you have specified, enabling flexible API interactions tailored to user needs.",
+      "category": "investigation",
+      "annotation": "generic_api_call",
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "HTTP Method",
+          "description": "Select an HTTP action for the request. You can select from the following options: \n\nGET \n\nPUT \n\nPOST \n\nDELETE \n\nPATCH",
+          "type": "select",
+          "name": "method",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": "GET",
+          "options": [
+            "GET",
+            "POST",
+            "PATCH",
+            "DELETE",
+            "PUT"
+          ]
+        },
+        {
+          "title": "Endpoint",
+          "description": "Specify the target API URL path for the request. For example, if the website is https://example.com and URL path is https://example.com/images/pic.jpg, the endpoint would be /images/pic.jpg.",
+          "type": "text",
+          "name": "apiendpoint",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify the target API URL path for example: /api/data_views"
+        },
+        {
+          "title": "Request Payload",
+          "description": "Specify data, as JSON, to be sent as the request payload (typically for POST or PUT requests).",
+          "type": "object",
+          "name": "data",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify data, as JSON, to be sent as the request payload (typically for POST or PUT requests)."
+        },
+        {
+          "title": "Query Parameters",
+          "description": "Specify any optional parameters to add to the URL and refine the request.",
+          "type": "object",
+          "name": "params",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "tooltip": "Specify any optional parameters to add to the URL and refine the request."
+        }
+      ],
+      "output_schema": {}
+    }
+  ]
+}
