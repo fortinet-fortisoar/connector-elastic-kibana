@@ -718,7 +718,6 @@
       "description": "Sends an API request to an API endpoint based on specified HTTP method, endpoint, and other input parameters that you have specified, enabling flexible API interactions tailored to user needs.",
       "category": "investigation",
       "annotation": "generic_api_call",
-      "visible": false,
       "enabled": true,
       "parameters": [
         {
