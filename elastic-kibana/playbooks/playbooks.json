@@ -1,0 +1,612 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "uuid": "74173793-c371-4d77-809c-eabca49a138c",
+      "@type": "WorkflowCollection",
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "uuid": "569f43fe-8873-43fa-8c76-bda1341dfe33",
+          "collection": "/api/3/workflow_collections/74173793-c371-4d77-809c-eabca49a138c",
+          "steps": [
+            {
+              "uuid": "d2859889-5ef8-4337-8565-36d5bc62af28",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "d5e14c22-f221-4c49-8b16-5a4d9b58d009",
+              "@type": "WorkflowStep",
+              "name": "Get All Data Views",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Elastic Kibana",
+                "config": "",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "elastic-kibana",
+                "operation": "get_all_data_views",
+                "operationTitle": "Get All Data Views"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieve a list of all data views from Elastic Kibana.",
+          "name": "Get All Data Views",
+          "tag": "#Elastic Kibana",
+          "recordTags": [
+            "Elastic",
+            "elastic-kibana"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/d2859889-5ef8-4337-8565-36d5bc62af28",
+          "routes": [
+            {
+              "uuid": "7af5623a-f629-4b85-80d2-6c38101c58b7",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get All Data Views",
+              "sourceStep": "/api/3/workflow_steps/d2859889-5ef8-4337-8565-36d5bc62af28",
+              "targetStep": "/api/3/workflow_steps/d5e14c22-f221-4c49-8b16-5a4d9b58d009"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "4f32cb96-c9f9-42b0-a14d-7be14ed62a82",
+          "collection": "/api/3/workflow_collections/74173793-c371-4d77-809c-eabca49a138c",
+          "steps": [
+            {
+              "uuid": "9bfb04de-0ec5-4657-9ef8-31181abd02e5",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "646b0f90-cd6c-46fe-8735-9324a9c9f3de",
+              "@type": "WorkflowStep",
+              "name": "Get Saved Queries",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Elastic Kibana",
+                "config": "",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "elastic-kibana",
+                "operation": "get_saved_queries",
+                "operationTitle": "Get Saved Queries"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieve a list of all saved queries from Elastic Kibana.",
+          "name": "Get Saved Queries",
+          "tag": "#Elastic Kibana",
+          "recordTags": [
+            "Elastic",
+            "elastic-kibana"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/9bfb04de-0ec5-4657-9ef8-31181abd02e5",
+          "routes": [
+            {
+              "uuid": "1c22b31c-3a0a-4041-b25a-bb3329586c42",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Saved Queries",
+              "sourceStep": "/api/3/workflow_steps/9bfb04de-0ec5-4657-9ef8-31181abd02e5",
+              "targetStep": "/api/3/workflow_steps/646b0f90-cd6c-46fe-8735-9324a9c9f3de"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "b64ec388-e149-4da4-9d2d-ad8c1fa4049c",
+          "collection": "/api/3/workflow_collections/74173793-c371-4d77-809c-eabca49a138c",
+          "steps": [
+            {
+              "uuid": "0cfe890b-2544-4845-91a7-b662367b5a4f",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "6228cefb-96c9-4e3f-8b14-49fc0d333180",
+              "@type": "WorkflowStep",
+              "name": "Create Live Query",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Elastic Kibana",
+                "config": "",
+                "params": {
+                  "query": "",
+                  "agent_ids": [
+                    "agent_id_1",
+                    "agent_id_2"
+                  ],
+                  "agent_platforms": [
+                    "platform_id_1",
+                    "platform_id_2"
+                  ],
+                  "agent_policy_ids": "",
+                  "alert_ids": "",
+                  "case_ids": "",
+                  "ecs_mapping": "",
+                  "event_ids": "",
+                  "metadata": "",
+                  "pack_id": ""
+                },
+                "version": "1.0.0",
+                "connector": "elastic-kibana",
+                "operation": "create_a_live_query",
+                "operationTitle": "Create Live Query"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Create and run a live query in Elastic Kibana based on the input parameters that ypu have specified.",
+          "name": "Create Live Query",
+          "tag": "#Elastic Kibana",
+          "recordTags": [
+            "Elastic",
+            "elastic-kibana"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/0cfe890b-2544-4845-91a7-b662367b5a4f",
+          "routes": [
+            {
+              "uuid": "550e3982-5dba-4bd5-b2f2-ec18d7255e27",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Live Query",
+              "sourceStep": "/api/3/workflow_steps/0cfe890b-2544-4845-91a7-b662367b5a4f",
+              "targetStep": "/api/3/workflow_steps/6228cefb-96c9-4e3f-8b14-49fc0d333180"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "8f25ebb8-1dc5-4505-a079-f794c90fa3cb",
+          "collection": "/api/3/workflow_collections/74173793-c371-4d77-809c-eabca49a138c",
+          "steps": [
+            {
+              "uuid": "25d09f23-836c-479b-a519-d609b065e1a1",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "0b2610b1-2c3a-43fd-aa40-5637a5b0d9a5",
+              "@type": "WorkflowStep",
+              "name": "Get Live Query Results",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Elastic Kibana",
+                "config": "",
+                "params": {
+                  "id": "",
+                  "actionId": ""
+                },
+                "version": "1.0.0",
+                "connector": "elastic-kibana",
+                "operation": "get_live_query_results",
+                "operationTitle": "Get Live Query Results"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieve the results of a live query using the query action ID from Elastic Kibana.",
+          "name": "Get Live Query Results",
+          "tag": "#Elastic Kibana",
+          "recordTags": [
+            "Elastic",
+            "elastic-kibana"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/25d09f23-836c-479b-a519-d609b065e1a1",
+          "routes": [
+            {
+              "uuid": "9d582c57-ba7e-4d93-902d-7661690774b3",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Live Query Results",
+              "sourceStep": "/api/3/workflow_steps/25d09f23-836c-479b-a519-d609b065e1a1",
+              "targetStep": "/api/3/workflow_steps/0b2610b1-2c3a-43fd-aa40-5637a5b0d9a5"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "848a8cc4-6847-4b36-bf85-ad388d0b4c12",
+          "collection": "/api/3/workflow_collections/74173793-c371-4d77-809c-eabca49a138c",
+          "steps": [
+            {
+              "uuid": "b0b4bc63-605a-4b65-8ea0-3ef64d40d61a",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "951bcd35-2445-482f-a4f2-5a0096e9976c",
+              "@type": "WorkflowStep",
+              "name": "Search cases",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Elastic Kibana",
+                "config": "",
+                "params": {
+                  "assignees": "",
+                  "category": "",
+                  "defaultSearchOperator": "OR",
+                  "from_": "",
+                  "to": "",
+                  "owner": "",
+                  "reporters": "",
+                  "search": "",
+                  "searchFields": "",
+                  "severity": "",
+                  "status": "",
+                  "tags": "",
+                  "sortField": "CreatedAt",
+                  "sortOrder": "Descending",
+                  "page": 1,
+                  "perPage": 20
+                },
+                "version": "1.0.0",
+                "connector": "elastic-kibana",
+                "operation": "search_cases",
+                "operationTitle": "Search cases"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Search cases in Elastic Kibana server based on the input parameters that you have specified.",
+          "name": "Search cases",
+          "tag": "#Elastic Kibana",
+          "recordTags": [
+            "Elastic",
+            "elastic-kibana"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/b0b4bc63-605a-4b65-8ea0-3ef64d40d61a",
+          "routes": [
+            {
+              "uuid": "0e8219f2-f58e-4735-b1d3-b64a4f742143",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Search cases",
+              "sourceStep": "/api/3/workflow_steps/b0b4bc63-605a-4b65-8ea0-3ef64d40d61a",
+              "targetStep": "/api/3/workflow_steps/951bcd35-2445-482f-a4f2-5a0096e9976c"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "1be96409-d91c-4589-8c3a-7d384e7be1e6",
+          "collection": "/api/3/workflow_collections/74173793-c371-4d77-809c-eabca49a138c",
+          "steps": [
+            {
+              "uuid": "8e7d7f4d-826e-4ff9-b797-3246abbeeadd",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "2c3e23a0-0946-468f-93ad-71f557e7fc97",
+              "@type": "WorkflowStep",
+              "name": "Get Case Information",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Elastic Kibana",
+                "config": "",
+                "params": {
+                  "caseId": ""
+                },
+                "version": "1.0.0",
+                "connector": "elastic-kibana",
+                "operation": "get_case_information",
+                "operationTitle": "Get Case Information"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Retrieve a specific case information from Elastic Kibana based on the case ID you have specified.",
+          "name": "Get Case Information",
+          "tag": "#Elastic Kibana",
+          "recordTags": [
+            "Elastic",
+            "elastic-kibana"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/8e7d7f4d-826e-4ff9-b797-3246abbeeadd",
+          "routes": [
+            {
+              "uuid": "8f79e0b4-4265-4863-af11-8abcb6f490f8",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Case Information",
+              "sourceStep": "/api/3/workflow_steps/8e7d7f4d-826e-4ff9-b797-3246abbeeadd",
+              "targetStep": "/api/3/workflow_steps/2c3e23a0-0946-468f-93ad-71f557e7fc97"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "b7c64a48-50e9-49d0-a4d4-f9d57d117308",
+          "collection": "/api/3/workflow_collections/74173793-c371-4d77-809c-eabca49a138c",
+          "steps": [
+            {
+              "uuid": "59505893-ab8d-4659-9c8f-3e6a4c9b5a2f",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "9ae3f851-4cf0-465f-8c1a-167bb0d9eaaa",
+              "@type": "WorkflowStep",
+              "name": "Add and Remove Detection Alert Tags",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Elastic Kibana",
+                "config": "",
+                "params": {
+                  "ids": "",
+                  "tags": {
+                    "tags_to_add": [],
+                    "tags_to_remove": []
+                  }
+                },
+                "version": "1.0.0",
+                "connector": "elastic-kibana",
+                "operation": "add_and_remove_detection_alert_tags",
+                "operationTitle": "Add and Remove Detection Alert Tags"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Add and remove detection alert tags based on the alert IDs and tags which you have specified.",
+          "name": "Add and Remove Detection Alert Tags",
+          "tag": "#Elastic Kibana",
+          "recordTags": [
+            "Elastic",
+            "elastic-kibana"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/59505893-ab8d-4659-9c8f-3e6a4c9b5a2f",
+          "routes": [
+            {
+              "uuid": "b8833ee7-98c8-4031-8abe-e3b6ddf15bc8",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Add and Remove Detection Alert Tags",
+              "sourceStep": "/api/3/workflow_steps/59505893-ab8d-4659-9c8f-3e6a4c9b5a2f",
+              "targetStep": "/api/3/workflow_steps/9ae3f851-4cf0-465f-8c1a-167bb0d9eaaa"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "1f8ca1d7-96b3-4a35-a0e5-623d539c8715",
+          "collection": "/api/3/workflow_collections/74173793-c371-4d77-809c-eabca49a138c",
+          "steps": [
+            {
+              "uuid": "c1ad6699-afb5-427c-b3c2-c59167752a52",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "step_variables": {
+                  "input": {
+                    "params": []
+                  }
+                }
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/b348f017-9a94-471f-87f8-ce88b6a7ad62"
+            },
+            {
+              "uuid": "7b575fc6-5de8-4ff8-b678-b8965e44d164",
+              "@type": "WorkflowStep",
+              "name": "Execute an API Request",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Elastic Kibana",
+                "config": "",
+                "params": {
+                  "method": "GET",
+                  "api_endpoint": "",
+                  "params": "",
+                  "json_data": ""
+                },
+                "version": "1.0.0",
+                "connector": "elastic-kibana",
+                "operation": "generic_api_call",
+                "operationTitle": "Execute an API Request"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "triggerLimit": null,
+          "description": "Sends an API request to an API endpoint based on specified HTTP method, endpoint, and other input parameters that you have specified, enabling flexible API interactions tailored to user needs.",
+          "name": "Execute an API Request",
+          "tag": "#Elastic Kibana",
+          "recordTags": [
+            "Elastic",
+            "elastic-kibana"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/c1ad6699-afb5-427c-b3c2-c59167752a52",
+          "routes": [
+            {
+              "uuid": "6460832c-16fa-460c-bd4a-447783286d26",
+              "@type": "WorkflowRoute",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Execute an API Request",
+              "sourceStep": "/api/3/workflow_steps/c1ad6699-afb5-427c-b3c2-c59167752a52",
+              "targetStep": "/api/3/workflow_steps/7b575fc6-5de8-4ff8-b678-b8965e44d164"
+            }
+          ]
+        }
+      ],
+      "name": "Sample - Elastic Kibana - 1.0.0",
+      "description": "Elastic Kibana provides a powerful UI for interacting with the Elastic Stack. It enables users to search, visualize, and manage data from Elasticsearch, build dashboards, monitor systems, and secure their environment.",
+      "visible": true,
+      "recordTags": [
+        "Elastic",
+        "elastic-kibana"
+      ]
+    }
+  ]
+}
